@@ -26,4 +26,6 @@ public interface IService {
 	ResponseEntity<String> updateTitle(Integer id, String msg);
 	
 	List<TodoModel> findAll();
+
+	ResponseEntity<UserModel> findByUsername(String name);
 }

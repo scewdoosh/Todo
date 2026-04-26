@@ -24,7 +24,7 @@ public class ConfigClass {
 	@Bean
 	public SecurityFilterChain security(HttpSecurity http) {
 		http.authorizeHttpRequests((authorize) -> authorize
-				.requestMatchers("/api/post-user","/api/test","/h2-console/**","/api/swagger/**","/swagger-ui/**","/swagger-ui.html/**","/v3/api-docs/**").permitAll()
+				.requestMatchers("/api/post-user","/api/get-me","/api/test","/h2-console/**","/api/swagger/**","/swagger-ui/**","/swagger-ui.html/**","/v3/api-docs/**").permitAll()
 			.anyRequest().authenticated()
 		)
 		.csrf(csrf -> csrf

@@ -85,7 +85,7 @@ public class ServiceClass implements IService,UserDetailsService{
 	public ResponseEntity<String> deleteUserModel(Integer id) {
 		Optional<UserModel> mod = repoUser.findById(id);
 		if(mod.isPresent()) {
-			repo.deleteById(id);
+			repoUser.deleteById(id);
 			return new ResponseEntity<String>("user with username :"+ mod.get().getUsername() +" deleted",HttpStatus.OK);
 		}
 		return new ResponseEntity<String>("user not found",HttpStatus.NOT_FOUND);
@@ -94,6 +94,12 @@ public class ServiceClass implements IService,UserDetailsService{
 	@Override
 	public List<TodoModel> findAll() {
 		return repo.findAll();
+	}
+
+	@Override
+	public ResponseEntity<UserModel> findByUsername(String name) {
+		UserModel model = repoUser.findByUsername(name).get();
+		return new ResponseEntity<UserModel>(model,HttpStatus.OK);
 	}
 
 	

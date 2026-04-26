@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cosa.model.TodoModel;
@@ -49,6 +50,11 @@ public class ControlRoom {
 		return service.findAll();
 	}
 	
+	@GetMapping("/get-me")
+	public ResponseEntity<UserModel> getMe(Authentication auth) {
+	    return service.findByUsername(auth.getName());
+	}
+	
 	@PostMapping("/post-user")
 	public ResponseEntity<UserModel> postMethod(@RequestBody UserModel entity) {
 		return service.addUserModel(entity);
@@ -60,21 +66,21 @@ public class ControlRoom {
 	}
 	
 	@PatchMapping("/update-desc/{id}")
-	public ResponseEntity<String> patchMethod(@RequestParam Integer id , @RequestBody String msg) {
+	public ResponseEntity<String> patchMethod(@PathVariable Integer id , @RequestBody String msg) {
 		return service.update(id, msg);
 	}
 	@PatchMapping("/update-title/{id}")
-	public ResponseEntity<String> patchMethodForTitle(@RequestParam Integer id , @RequestBody String msg) {
+	public ResponseEntity<String> patchMethodForTitle(@PathVariable Integer id , @RequestBody String msg) {
 		return service.updateTitle(id, msg);
 	}
 	
 	@DeleteMapping("/delete-todo/{id}")
-	public ResponseEntity<String> deleteMethod(@RequestParam Integer id) {
+	public ResponseEntity<String> deleteMethod(@PathVariable Integer id) {
 		return service.deleteTodoModel(id);
 	}
 	
 	@DeleteMapping("/delete-user/{id}")
-	public ResponseEntity<String> deleteUserEntity(@RequestParam Integer id) {
+	public ResponseEntity<String> deleteUserEntity(@PathVariable Integer id) {
 		return service.deleteUserModel(id);
 	}
 	
