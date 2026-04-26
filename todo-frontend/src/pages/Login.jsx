@@ -12,11 +12,12 @@ function Login({ setAuth }) {
       'Authorization': 'Basic ' + btoa(username + ':' + password),
       'Content-Type': 'application/json'
     };
-
     try {
       const res = await fetch('http://localhost:8080/api/test-lock', { headers });
       if (res.ok) {
-        setAuth({ username, password });
+        const meRes = await fetch('http://localhost:8080/api/get-me', { headers });
+        const meData = await meRes.json();
+        setAuth({ username, password, id: meData.id });
         navigate('/home');
       } else {
         setError('Invalid username or password!');

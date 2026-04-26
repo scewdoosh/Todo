@@ -10,9 +10,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={auth ? <Navigate to="/home" /> : <Login setAuth={setAuth} />} />
-        <Route path="/home" element={auth ? <Home auth={auth} /> : <Navigate to="/" />} />
+       <Route path="/home" element={auth ? <Home auth={auth} setAuth={setAuth} /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
+
   );
 }
 
