@@ -65,7 +65,13 @@ function Login({ setAuth }) {
                 fontWeight: '600',
                 marginBottom: '20px',
                 textAlign: 'center'
-            }}>Login</h2>
+            }}>Login</h2> <h4 style={{
+                color: '#ffffff',
+                fontSize: '12px',
+                fontWeight: '600',
+                marginBottom: '20px',
+                textAlign: 'center'
+            }}> kindly wait till the server starts :) reister if you are new then click login ;)git </h4>
             
             <input 
                 placeholder="Username" 
