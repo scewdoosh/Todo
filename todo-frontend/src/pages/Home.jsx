@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
 
 function Home({ auth, setAuth }) {
   const [todos, setTodos] = useState([]);
@@ -15,15 +15,20 @@ function Home({ auth, setAuth }) {
     'Content-Type': 'application/json'
   };
 
-  const fetchTodos = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/get-all`, { headers });
+const fetchTodos = useCallback(async () => {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/get-all`, { 
+      headers: {
+        'Authorization': 'Basic ' + btoa(auth.username + ':' + auth.password),
+        'Content-Type': 'application/json'
+      }
+    });
     const data = await res.json();
     setTodos(data);
-  };
-
-  useEffect(() => {
+  }, [auth.username, auth.password]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => {
     fetchTodos();
-  }, []);
+  }, [fetchTodos]);
 
   const createTodo = async () => {
     if (!title || !des) return alert('Fill both fields!');
