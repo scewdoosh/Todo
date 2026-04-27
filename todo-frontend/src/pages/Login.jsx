@@ -71,7 +71,7 @@ function Login({ setAuth }) {
                 fontWeight: '600',
                 marginBottom: '20px',
                 textAlign: 'center'
-            }}> kindly wait till the server starts :) reister if you are new then click login ;)git </h4>
+            }}> kindly wait till the server starts :) reister if you are new then click login ;)</h4>
             
             <input 
                 placeholder="Username" 
