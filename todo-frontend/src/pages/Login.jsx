@@ -13,9 +13,9 @@ function Login({ setAuth }) {
       'Content-Type': 'application/json'
     };
     try {
-      const res = await fetch('http://localhost:8080/api/test-lock', { headers });
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/test-lock`, { headers });
       if (res.ok) {
-        const meRes = await fetch('http://localhost:8080/api/get-me', { headers });
+        const meRes = await fetch(`${process.env.REACT_APP_API_URL}/api/get-me`, { headers });
         const meData = await meRes.json();
         setAuth({ username, password, id: meData.id });
         navigate('/home');
@@ -29,7 +29,7 @@ function Login({ setAuth }) {
 
   const handleRegister = async () => {
     try {
-      const res = await fetch('http://localhost:8080/api/post-user', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/post-user`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })

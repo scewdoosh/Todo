@@ -16,7 +16,7 @@ function Home({ auth, setAuth }) {
   };
 
   const fetchTodos = async () => {
-    const res = await fetch('http://localhost:8080/api/get-all', { headers });
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/get-all`, { headers });
     const data = await res.json();
     setTodos(data);
   };
@@ -27,7 +27,7 @@ function Home({ auth, setAuth }) {
 
   const createTodo = async () => {
     if (!title || !des) return alert('Fill both fields!');
-    const res = await fetch('http://localhost:8080/api/post-todo', {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/post-todo`, {
       method: 'POST',
       headers,
       body: JSON.stringify({ title, des })
@@ -40,7 +40,7 @@ function Home({ auth, setAuth }) {
   };
 
   const deleteTodo = async (id) => {
-    await fetch(`http://localhost:8080/api/delete-todo/${id}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/delete-todo/${id}`, {
       method: 'DELETE',
       headers
     });
@@ -54,12 +54,12 @@ function Home({ auth, setAuth }) {
   };
 
   const saveEdit = async () => {
-    await fetch(`http://localhost:8080/api/update-title/${editId}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/update-title/${editId}`, {
       method: 'PATCH',
       headers,
       body: editTitle
     });
-    await fetch(`http://localhost:8080/api/update-desc/${editId}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/update-desc/${editId}`, {
       method: 'PATCH',
       headers,
       body: editDes
@@ -71,7 +71,7 @@ function Home({ auth, setAuth }) {
   const deleteAccount = async () => {
     const confirm = window.confirm('Are you sure you want to delete your account?');
     if (!confirm) return;
-    await fetch(`http://localhost:8080/api/delete-user/${auth.id}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/delete-user/${auth.id}`, {
       method: 'DELETE',
       headers
     });
