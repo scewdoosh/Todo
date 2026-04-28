@@ -48,6 +48,8 @@ public class ConfigClass {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration config = new CorsConfiguration();
+	    config.addAllowedOriginPattern("https://*.todo-frontend-springboot.pages.dev");
+	    config.addAllowedOrigin("https://todo-frontend-springboot.pages.dev");
 	    config.addAllowedOrigin("http://localhost:3000");
 	    config.addAllowedMethod("*");
 	    config.addAllowedHeader("*");
